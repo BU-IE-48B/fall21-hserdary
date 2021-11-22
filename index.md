@@ -6,7 +6,7 @@
 
 ## Homework #2
 
-{Here](files/hw2Desc.pdf) is the description of the assignment.  
+[Here](files/hw2Desc.pdf) is the description of the assignment.  
 [Here](files/hw2.html) is penalized regression approaches for CBF time series representation.  
 [Here](files/hw2.ipynb) is the .ipynb notebook file.  
 
