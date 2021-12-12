@@ -413,7 +413,7 @@ erpDistMatrix &lt;- function(reprMatrix) {
     }
     
     solutionTable &lt;- solutionTable[-1]
-    solutionTable &lt;- solutionTable[, list(meanACC=mean(acc)), by=list(kNNValue, representation, parameter, dist)]    
+    solutionTable &lt;- solutionTable[, list(meanACC=mean(acc), sdACC=sd(acc)), by=list(kNNValue, representation, parameter, dist)]    
     return(solutionTable)
 }</code></pre>
 <p>
@@ -473,68 +473,68 @@ cv_indices1 &lt;- generateCVRuns(dt1_classes, ntimes=nof_rep, nfold=n_fold,
 <pre class="r"><code>#running the algorithm
 dt1_reprTable &lt;- alternativeComparisonFunc(kVector, dt1_long, dt1_classes, cv_indices1, nof_rep, n_fold)
 dt1_reprTable[order(meanACC, decreasing=T)]</code></pre>
-<pre><code>##     kNNValue representation parameter dist   meanACC
-##  1:        1            dwt      haar  euc 1.0000000
-##  2:        1            dwt       la8  euc 1.0000000
-##  3:        1            dwt      haar manh 1.0000000
-##  4:        1            dwt       la8 manh 1.0000000
-##  5:        1            dwt      haar  dtw 1.0000000
-##  6:        1            dwt       la8  dtw 1.0000000
-##  7:        1            dwt      haar  erp 1.0000000
-##  8:        1            dwt       la8  erp 1.0000000
-##  9:        3            dwt      haar  dtw 1.0000000
-## 10:        3            dwt       la8  dtw 1.0000000
-## 11:        5            dwt      haar  dtw 1.0000000
-## 12:        5            dwt       la8  dtw 1.0000000
-## 13:        3            dwt      haar  erp 0.9927473
-## 14:        3            dwt       la8  erp 0.9927473
-## 15:        5            dwt      haar  erp 0.9927473
-## 16:        5            dwt       la8  erp 0.9927473
-## 17:        3            dwt      haar manh 0.9926374
-## 18:        3            dwt       la8 manh 0.9926374
-## 19:        5            dwt      haar manh 0.9926374
-## 20:        5            dwt       la8 manh 0.9926374
-## 21:        3            dwt      haar  euc 0.9626374
-## 22:        3            dwt       la8  euc 0.9626374
-## 23:        5            dwt      haar  euc 0.9626374
-## 24:        5            dwt       la8  euc 0.9626374
-## 25:        1            raw      &lt;NA&gt;  dtw 0.5556044
-## 26:        5           tree         6 manh 0.5412088
-## 27:        5           tree        12 manh 0.5412088
-## 28:        5            raw      &lt;NA&gt;  erp 0.5407692
-## 29:        5           tree         6  dtw 0.5339560
-## 30:        5           tree        12  dtw 0.5339560
-## 31:        5           tree         6  erp 0.5332967
-## 32:        5           tree        12  erp 0.5332967
-## 33:        3           tree         6  erp 0.5265934
-## 34:        3           tree        12  erp 0.5265934
-## 35:        3            raw      &lt;NA&gt;  euc 0.5263736
-## 36:        1            raw      &lt;NA&gt; manh 0.5260440
-## 37:        3            raw      &lt;NA&gt;  dtw 0.5260440
-## 38:        5            raw      &lt;NA&gt;  euc 0.5192308
-## 39:        1            raw      &lt;NA&gt;  erp 0.5186813
-## 40:        3           tree         6  euc 0.5184615
-## 41:        3           tree        12  euc 0.5184615
-## 42:        5           tree         6  euc 0.5120879
-## 43:        5           tree        12  euc 0.5120879
-## 44:        5            raw      &lt;NA&gt; manh 0.5118681
-## 45:        1           tree         6 manh 0.5115385
-## 46:        1           tree        12 manh 0.5115385
-## 47:        1            raw      &lt;NA&gt;  euc 0.5114286
-## 48:        3           tree         6  dtw 0.4896703
-## 49:        3           tree        12  dtw 0.4896703
-## 50:        3            raw      &lt;NA&gt; manh 0.4893407
-## 51:        3           tree         6 manh 0.4890110
-## 52:        3           tree        12 manh 0.4890110
-## 53:        1           tree        12  erp 0.4814286
-## 54:        3            raw      &lt;NA&gt;  erp 0.4745055
-## 55:        1           tree         6  erp 0.4737363
-## 56:        1           tree         6  euc 0.4665934
-## 57:        1           tree        12  euc 0.4665934
-## 58:        5            raw      &lt;NA&gt;  dtw 0.4663736
-## 59:        1           tree         6  dtw 0.4591209
-## 60:        1           tree        12  dtw 0.4514286
-##     kNNValue representation parameter dist   meanACC</code></pre>
+<pre><code>##     kNNValue representation parameter dist   meanACC      sdACC
+##  1:        1            dwt      haar  euc 1.0000000 0.00000000
+##  2:        1            dwt       la8  euc 1.0000000 0.00000000
+##  3:        1            dwt      haar manh 1.0000000 0.00000000
+##  4:        1            dwt       la8 manh 1.0000000 0.00000000
+##  5:        1            dwt      haar  dtw 1.0000000 0.00000000
+##  6:        1            dwt       la8  dtw 1.0000000 0.00000000
+##  7:        1            dwt      haar  erp 1.0000000 0.00000000
+##  8:        1            dwt       la8  erp 1.0000000 0.00000000
+##  9:        3            dwt      haar  dtw 1.0000000 0.00000000
+## 10:        3            dwt       la8  dtw 1.0000000 0.00000000
+## 11:        5            dwt      haar  dtw 1.0000000 0.00000000
+## 12:        5            dwt       la8  dtw 1.0000000 0.00000000
+## 13:        3            dwt      haar  erp 0.9927473 0.02199035
+## 14:        3            dwt       la8  erp 0.9927473 0.02199035
+## 15:        5            dwt      haar  erp 0.9927473 0.02199035
+## 16:        5            dwt       la8  erp 0.9927473 0.02199035
+## 17:        3            dwt      haar manh 0.9926374 0.02232872
+## 18:        3            dwt       la8 manh 0.9926374 0.02232872
+## 19:        5            dwt      haar manh 0.9926374 0.02232872
+## 20:        5            dwt       la8 manh 0.9926374 0.02232872
+## 21:        3            dwt      haar  euc 0.9626374 0.05068723
+## 22:        3            dwt       la8  euc 0.9626374 0.05068723
+## 23:        5            dwt      haar  euc 0.9626374 0.05068723
+## 24:        5            dwt       la8  euc 0.9626374 0.05068723
+## 25:        1            raw      &lt;NA&gt;  dtw 0.5556044 0.13620567
+## 26:        5           tree         6 manh 0.5412088 0.12488643
+## 27:        5           tree        12 manh 0.5412088 0.12488643
+## 28:        5            raw      &lt;NA&gt;  erp 0.5407692 0.11836094
+## 29:        5           tree         6  dtw 0.5339560 0.13361190
+## 30:        5           tree        12  dtw 0.5339560 0.13361190
+## 31:        5           tree         6  erp 0.5332967 0.10801501
+## 32:        5           tree        12  erp 0.5332967 0.10801501
+## 33:        3           tree         6  erp 0.5265934 0.13283343
+## 34:        3           tree        12  erp 0.5265934 0.13283343
+## 35:        3            raw      &lt;NA&gt;  euc 0.5263736 0.13661830
+## 36:        1            raw      &lt;NA&gt; manh 0.5260440 0.13173168
+## 37:        3            raw      &lt;NA&gt;  dtw 0.5260440 0.12700249
+## 38:        5            raw      &lt;NA&gt;  euc 0.5192308 0.12269151
+## 39:        1            raw      &lt;NA&gt;  erp 0.5186813 0.11356276
+## 40:        3           tree         6  euc 0.5184615 0.12088299
+## 41:        3           tree        12  euc 0.5184615 0.12088299
+## 42:        5           tree         6  euc 0.5120879 0.13295230
+## 43:        5           tree        12  euc 0.5120879 0.13295230
+## 44:        5            raw      &lt;NA&gt; manh 0.5118681 0.11221668
+## 45:        1           tree         6 manh 0.5115385 0.13512759
+## 46:        1           tree        12 manh 0.5115385 0.13512759
+## 47:        1            raw      &lt;NA&gt;  euc 0.5114286 0.12066404
+## 48:        3           tree         6  dtw 0.4896703 0.12655944
+## 49:        3           tree        12  dtw 0.4896703 0.12603258
+## 50:        3            raw      &lt;NA&gt; manh 0.4893407 0.13902962
+## 51:        3           tree         6 manh 0.4890110 0.12173746
+## 52:        3           tree        12 manh 0.4890110 0.12173746
+## 53:        1           tree        12  erp 0.4814286 0.13197970
+## 54:        3            raw      &lt;NA&gt;  erp 0.4745055 0.13617907
+## 55:        1           tree         6  erp 0.4737363 0.13338391
+## 56:        1           tree         6  euc 0.4665934 0.12053632
+## 57:        1           tree        12  euc 0.4665934 0.12053632
+## 58:        5            raw      &lt;NA&gt;  dtw 0.4663736 0.09987214
+## 59:        1           tree         6  dtw 0.4591209 0.11745733
+## 60:        1           tree        12  dtw 0.4514286 0.11958965
+##     kNNValue representation parameter dist   meanACC      sdACC</code></pre>
 <p>When we look at the ordered results, we can see that there are 12 different approaches who predict 100% correctly. Also, other results show that discrete wavelet transform with any distance measurement and k values of (1, 3, 5) perform over 96% accuracy although the success of other approaches are up to 55%. For the GunPointMaleVersusFemale Set, DWT can be used with any desired distance measurement and any k value in (1, 3, 5) in order to classify.</p>
 <p>
  
@@ -578,68 +578,68 @@ cv_indices2 &lt;- generateCVRuns(dt2_classes, ntimes=nof_rep, nfold=n_fold,
 <pre class="r"><code>#running the algorithm
 dt2_reprTable &lt;- alternativeComparisonFunc(kVector, dt2_long, dt2_classes, cv_indices2, nof_rep, n_fold)
 dt2_reprTable[order(meanACC, decreasing=T)]</code></pre>
-<pre><code>##     kNNValue representation parameter dist   meanACC
-##  1:        3            dwt      haar  euc 0.9722222
-##  2:        3            dwt       la8  euc 0.9722222
-##  3:        5            dwt      haar  euc 0.9722222
-##  4:        5            dwt       la8  euc 0.9722222
-##  5:        5            dwt      haar manh 0.9555556
-##  6:        5            dwt       la8 manh 0.9555556
-##  7:        3            dwt      haar manh 0.9500000
-##  8:        1            dwt       la8  euc 0.9500000
-##  9:        1            dwt      haar  euc 0.9444444
-## 10:        3            dwt       la8 manh 0.9444444
-## 11:        1            dwt      haar manh 0.9333333
-## 12:        1            dwt       la8 manh 0.9333333
-## 13:        1            dwt       la8  dtw 0.9166667
-## 14:        1            dwt       la8  erp 0.9166667
-## 15:        5            dwt       la8  erp 0.9166667
-## 16:        1            dwt      haar  erp 0.9055556
-## 17:        5            dwt      haar  erp 0.9000000
-## 18:        3            dwt      haar  erp 0.9000000
-## 19:        3            dwt       la8  erp 0.8944444
-## 20:        1            dwt      haar  dtw 0.8833333
-## 21:        5           tree         6  euc 0.8555556
-## 22:        5           tree        12  euc 0.8555556
-## 23:        5            raw      &lt;NA&gt;  erp 0.8500000
-## 24:        5            dwt      haar  dtw 0.8444444
-## 25:        5            raw      &lt;NA&gt;  euc 0.8444444
-## 26:        5           tree         6 manh 0.8388889
-## 27:        5           tree        12 manh 0.8388889
-## 28:        3           tree         6 manh 0.8333333
-## 29:        3           tree        12 manh 0.8333333
-## 30:        3           tree         6  dtw 0.8277778
-## 31:        5            raw      &lt;NA&gt; manh 0.8277778
-## 32:        5           tree        12  erp 0.8277778
-## 33:        3           tree         6  euc 0.8222222
-## 34:        3           tree        12  euc 0.8222222
-## 35:        3            raw      &lt;NA&gt;  euc 0.8222222
-## 36:        5           tree         6  erp 0.8222222
-## 37:        3            dwt       la8  dtw 0.8166667
-## 38:        5           tree         6  dtw 0.8166667
-## 39:        3           tree        12  dtw 0.8166667
-## 40:        3            raw      &lt;NA&gt; manh 0.8111111
-## 41:        5           tree        12  dtw 0.8111111
-## 42:        5            dwt       la8  dtw 0.8111111
-## 43:        1            raw      &lt;NA&gt;  erp 0.8000000
-## 44:        1           tree         6  euc 0.8000000
-## 45:        1           tree        12  euc 0.8000000
-## 46:        1           tree         6  erp 0.8000000
-## 47:        3            dwt      haar  dtw 0.8000000
-## 48:        1           tree        12  erp 0.7944444
-## 49:        1           tree         6 manh 0.7944444
-## 50:        1           tree        12 manh 0.7944444
-## 51:        3           tree         6  erp 0.7944444
-## 52:        3           tree        12  erp 0.7944444
-## 53:        3            raw      &lt;NA&gt;  erp 0.7888889
-## 54:        1           tree         6  dtw 0.7833333
-## 55:        5            raw      &lt;NA&gt;  dtw 0.7777778
-## 56:        3            raw      &lt;NA&gt;  dtw 0.7777778
-## 57:        1           tree        12  dtw 0.7777778
-## 58:        1            raw      &lt;NA&gt; manh 0.7722222
-## 59:        1            raw      &lt;NA&gt;  euc 0.7500000
-## 60:        1            raw      &lt;NA&gt;  dtw 0.7444444
-##     kNNValue representation parameter dist   meanACC</code></pre>
+<pre><code>##     kNNValue representation parameter dist   meanACC      sdACC
+##  1:        3            dwt      haar  euc 0.9722222 0.03928371
+##  2:        3            dwt       la8  euc 0.9722222 0.03928371
+##  3:        5            dwt      haar  euc 0.9722222 0.03928371
+##  4:        5            dwt       la8  euc 0.9722222 0.03928371
+##  5:        5            dwt      haar manh 0.9555556 0.05264484
+##  6:        5            dwt       la8 manh 0.9555556 0.05264484
+##  7:        3            dwt      haar manh 0.9500000 0.05527138
+##  8:        1            dwt       la8  euc 0.9500000 0.04236936
+##  9:        1            dwt      haar  euc 0.9444444 0.04761905
+## 10:        3            dwt       la8 manh 0.9444444 0.05382802
+## 11:        1            dwt      haar manh 0.9333333 0.05498574
+## 12:        1            dwt       la8 manh 0.9333333 0.05611959
+## 13:        1            dwt       la8  dtw 0.9166667 0.06568629
+## 14:        1            dwt       la8  erp 0.9166667 0.05173970
+## 15:        5            dwt       la8  erp 0.9166667 0.07796382
+## 16:        1            dwt      haar  erp 0.9055556 0.05639949
+## 17:        5            dwt      haar  erp 0.9000000 0.07612431
+## 18:        3            dwt      haar  erp 0.9000000 0.06447650
+## 19:        3            dwt       la8  erp 0.8944444 0.07466225
+## 20:        1            dwt      haar  dtw 0.8833333 0.06757693
+## 21:        5           tree         6  euc 0.8555556 0.08694009
+## 22:        5           tree        12  euc 0.8555556 0.08694009
+## 23:        5            raw      &lt;NA&gt;  erp 0.8500000 0.08190384
+## 24:        5            dwt      haar  dtw 0.8444444 0.09457441
+## 25:        5            raw      &lt;NA&gt;  euc 0.8444444 0.07856742
+## 26:        5           tree         6 manh 0.8388889 0.07295546
+## 27:        5           tree        12 manh 0.8388889 0.07295546
+## 28:        3           tree         6 manh 0.8333333 0.07529233
+## 29:        3           tree        12 manh 0.8333333 0.07529233
+## 30:        3           tree         6  dtw 0.8277778 0.09540330
+## 31:        5            raw      &lt;NA&gt; manh 0.8277778 0.08996654
+## 32:        5           tree        12  erp 0.8277778 0.07876759
+## 33:        3           tree         6  euc 0.8222222 0.08694009
+## 34:        3           tree        12  euc 0.8222222 0.08694009
+## 35:        3            raw      &lt;NA&gt;  euc 0.8222222 0.08093682
+## 36:        5           tree         6  erp 0.8222222 0.07694730
+## 37:        3            dwt       la8  dtw 0.8166667 0.09340161
+## 38:        5           tree         6  dtw 0.8166667 0.08492434
+## 39:        3           tree        12  dtw 0.8166667 0.10117102
+## 40:        3            raw      &lt;NA&gt; manh 0.8111111 0.08837721
+## 41:        5           tree        12  dtw 0.8111111 0.08908708
+## 42:        5            dwt       la8  dtw 0.8111111 0.09255479
+## 43:        1            raw      &lt;NA&gt;  erp 0.8000000 0.08473872
+## 44:        1           tree         6  euc 0.8000000 0.08547881
+## 45:        1           tree        12  euc 0.8000000 0.08547881
+## 46:        1           tree         6  erp 0.8000000 0.10101525
+## 47:        3            dwt      haar  dtw 0.8000000 0.10588622
+## 48:        1           tree        12  erp 0.7944444 0.10543913
+## 49:        1           tree         6 manh 0.7944444 0.09340161
+## 50:        1           tree        12 manh 0.7944444 0.09340161
+## 51:        3           tree         6  erp 0.7944444 0.08417938
+## 52:        3           tree        12  erp 0.7944444 0.08417938
+## 53:        3            raw      &lt;NA&gt;  erp 0.7888889 0.09118353
+## 54:        1           tree         6  dtw 0.7833333 0.09407357
+## 55:        5            raw      &lt;NA&gt;  dtw 0.7777778 0.09655179
+## 56:        3            raw      &lt;NA&gt;  dtw 0.7777778 0.10101525
+## 57:        1           tree        12  dtw 0.7777778 0.09457441
+## 58:        1            raw      &lt;NA&gt; manh 0.7722222 0.09272477
+## 59:        1            raw      &lt;NA&gt;  euc 0.7500000 0.08566283
+## 60:        1            raw      &lt;NA&gt;  dtw 0.7444444 0.10468973
+##     kNNValue representation parameter dist   meanACC      sdACC</code></pre>
 <p>Again, discrete wavelet transform works well for this dataset. Over 90% accuracy level, it can be chosen with parameters of first 16 rows of the table.</p>
 <p>
  
@@ -683,68 +683,68 @@ cv_indices3 &lt;- generateCVRuns(dt3_classes, ntimes=nof_rep, nfold=n_fold,
 <pre class="r"><code>#running the algorithm
 dt3_reprTable &lt;- alternativeComparisonFunc(kVector, dt3_long, dt3_classes, cv_indices3, nof_rep, n_fold)
 dt3_reprTable[order(meanACC, decreasing=T)]</code></pre>
-<pre><code>##     kNNValue representation parameter dist meanACC
-##  1:        1            dwt       la8  dtw    1.00
-##  2:        1            dwt      haar  dtw    0.99
-##  3:        3            dwt      haar  dtw    0.99
-##  4:        3            dwt       la8  dtw    0.99
-##  5:        5            dwt      haar  dtw    0.94
-##  6:        5            dwt       la8  dtw    0.93
-##  7:        1            dwt       la8  erp    0.90
-##  8:        1            dwt      haar  erp    0.89
-##  9:        1            dwt      haar manh    0.85
-## 10:        1            dwt       la8 manh    0.85
-## 11:        1            dwt      haar  euc    0.84
-## 12:        1            dwt       la8  euc    0.84
-## 13:        3            dwt      haar  erp    0.83
-## 14:        3            dwt       la8  erp    0.83
-## 15:        3            raw      &lt;NA&gt;  dtw    0.82
-## 16:        5            raw      &lt;NA&gt;  dtw    0.82
-## 17:        5            dwt      haar  erp    0.82
-## 18:        5            dwt       la8  erp    0.82
-## 19:        3            dwt      haar manh    0.79
-## 20:        3            dwt       la8 manh    0.78
-## 21:        1            raw      &lt;NA&gt;  dtw    0.74
-## 22:        1           tree         6  dtw    0.74
-## 23:        1           tree        12  dtw    0.74
-## 24:        5            dwt      haar manh    0.73
-## 25:        5            dwt       la8 manh    0.73
-## 26:        5           tree        12  dtw    0.73
-## 27:        3           tree        12  dtw    0.72
-## 28:        5           tree         6  dtw    0.72
-## 29:        3           tree         6  dtw    0.71
-## 30:        3            dwt      haar  euc    0.70
-## 31:        3            dwt       la8  euc    0.69
-## 32:        5           tree         6  erp    0.69
-## 33:        5           tree        12  erp    0.69
-## 34:        5            raw      &lt;NA&gt;  erp    0.66
-## 35:        3            raw      &lt;NA&gt;  erp    0.66
-## 36:        1            raw      &lt;NA&gt;  erp    0.64
-## 37:        3            raw      &lt;NA&gt; manh    0.63
-## 38:        3           tree         6  erp    0.62
-## 39:        3           tree         6 manh    0.61
-## 40:        1           tree         6  erp    0.61
-## 41:        3           tree        12  erp    0.61
-## 42:        1           tree        12  erp    0.60
-## 43:        3           tree        12 manh    0.60
-## 44:        5           tree         6 manh    0.60
-## 45:        5           tree        12 manh    0.60
-## 46:        5            dwt       la8  euc    0.59
-## 47:        5            raw      &lt;NA&gt; manh    0.59
-## 48:        1            raw      &lt;NA&gt; manh    0.59
-## 49:        5            dwt      haar  euc    0.58
-## 50:        1            raw      &lt;NA&gt;  euc    0.58
-## 51:        1           tree         6 manh    0.56
-## 52:        1           tree        12 manh    0.55
-## 53:        5           tree         6  euc    0.53
-## 54:        3            raw      &lt;NA&gt;  euc    0.53
-## 55:        5            raw      &lt;NA&gt;  euc    0.52
-## 56:        5           tree        12  euc    0.52
-## 57:        1           tree         6  euc    0.52
-## 58:        3           tree         6  euc    0.51
-## 59:        1           tree        12  euc    0.50
-## 60:        3           tree        12  euc    0.50
-##     kNNValue representation parameter dist meanACC</code></pre>
+<pre><code>##     kNNValue representation parameter dist meanACC      sdACC
+##  1:        1            dwt       la8  dtw    1.00 0.00000000
+##  2:        1            dwt      haar  dtw    0.99 0.03030458
+##  3:        3            dwt      haar  dtw    0.99 0.03030458
+##  4:        3            dwt       la8  dtw    0.99 0.03030458
+##  5:        5            dwt      haar  dtw    0.94 0.06998542
+##  6:        5            dwt       la8  dtw    0.93 0.07354022
+##  7:        1            dwt       la8  erp    0.90 0.06998542
+##  8:        1            dwt      haar  erp    0.89 0.07071068
+##  9:        1            dwt      haar manh    0.85 0.07889544
+## 10:        1            dwt       la8 manh    0.85 0.07889544
+## 11:        1            dwt      haar  euc    0.84 0.10879676
+## 12:        1            dwt       la8  euc    0.84 0.10879676
+## 13:        3            dwt      haar  erp    0.83 0.07626484
+## 14:        3            dwt       la8  erp    0.83 0.07626484
+## 15:        3            raw      &lt;NA&gt;  dtw    0.82 0.11605769
+## 16:        5            raw      &lt;NA&gt;  dtw    0.82 0.11780302
+## 17:        5            dwt      haar  erp    0.82 0.08329931
+## 18:        5            dwt       la8  erp    0.82 0.08329931
+## 19:        3            dwt      haar manh    0.79 0.10151907
+## 20:        3            dwt       la8 manh    0.78 0.09897433
+## 21:        1            raw      &lt;NA&gt;  dtw    0.74 0.11780302
+## 22:        1           tree         6  dtw    0.74 0.12777531
+## 23:        1           tree        12  dtw    0.74 0.13552619
+## 24:        5            dwt      haar manh    0.73 0.10546302
+## 25:        5            dwt       la8 manh    0.73 0.10546302
+## 26:        5           tree        12  dtw    0.73 0.12330483
+## 27:        3           tree        12  dtw    0.72 0.12777531
+## 28:        5           tree         6  dtw    0.72 0.12616801
+## 29:        3           tree         6  dtw    0.71 0.12975644
+## 30:        3            dwt      haar  euc    0.70 0.12616801
+## 31:        3            dwt       la8  euc    0.69 0.13131983
+## 32:        5           tree         6  erp    0.69 0.12163847
+## 33:        5           tree        12  erp    0.69 0.12163847
+## 34:        5            raw      &lt;NA&gt;  erp    0.66 0.11952286
+## 35:        3            raw      &lt;NA&gt;  erp    0.66 0.13702376
+## 36:        1            raw      &lt;NA&gt;  erp    0.64 0.14708043
+## 37:        3            raw      &lt;NA&gt; manh    0.63 0.11823532
+## 38:        3           tree         6  erp    0.62 0.13248026
+## 39:        3           tree         6 manh    0.61 0.13286482
+## 40:        1           tree         6  erp    0.61 0.13887301
+## 41:        3           tree        12  erp    0.61 0.12817399
+## 42:        1           tree        12  erp    0.60 0.13552619
+## 43:        3           tree        12 manh    0.60 0.12936264
+## 44:        5           tree         6 manh    0.60 0.13702376
+## 45:        5           tree        12 manh    0.60 0.13702376
+## 46:        5            dwt       la8  euc    0.59 0.11473127
+## 47:        5            raw      &lt;NA&gt; manh    0.59 0.14321384
+## 48:        1            raw      &lt;NA&gt; manh    0.59 0.14603606
+## 49:        5            dwt      haar  euc    0.58 0.11952286
+## 50:        1            raw      &lt;NA&gt;  euc    0.58 0.14285714
+## 51:        1           tree         6 manh    0.56 0.15518258
+## 52:        1           tree        12 manh    0.55 0.15551101
+## 53:        5           tree         6  euc    0.53 0.14463183
+## 54:        3            raw      &lt;NA&gt;  euc    0.53 0.14603606
+## 55:        5            raw      &lt;NA&gt;  euc    0.52 0.12936264
+## 56:        5           tree        12  euc    0.52 0.14142136
+## 57:        1           tree         6  euc    0.52 0.15118579
+## 58:        3           tree         6  euc    0.51 0.15811388
+## 59:        1           tree        12  euc    0.50 0.14568627
+## 60:        3           tree        12  euc    0.50 0.15386185
+##     kNNValue representation parameter dist meanACC      sdACC</code></pre>
 <p>The best results have been achieved by dwt representation again. The approach and parameter alternatives can be selected by using the top values of the table above.</p>
 <p>
  
@@ -788,68 +788,68 @@ cv_indices4 &lt;- generateCVRuns(dt4_classes, ntimes=nof_rep, nfold=n_fold,
 <pre class="r"><code>#running the algorithm
 dt4_reprTable &lt;- alternativeComparisonFunc(kVector, dt4_long, dt4_classes, cv_indices4, nof_rep, n_fold)
 dt4_reprTable[order(meanACC, decreasing=T)]</code></pre>
-<pre><code>##     kNNValue representation parameter dist   meanACC
-##  1:        3            dwt      haar  erp 0.4040000
-##  2:        3            dwt       la8  erp 0.3944444
-##  3:        3           tree         6  erp 0.3835556
-##  4:        5            dwt      haar manh 0.3740000
-##  5:        3            dwt      haar  dtw 0.3737778
-##  6:        3           tree        12  erp 0.3733333
-##  7:        1            dwt      haar  dtw 0.3646667
-##  8:        3            dwt      haar  euc 0.3642222
-##  9:        3            dwt       la8 manh 0.3642222
-## 10:        1            dwt      haar  erp 0.3640000
-## 11:        3            dwt      haar manh 0.3640000
-## 12:        5            dwt      haar  erp 0.3640000
-## 13:        3           tree         6 manh 0.3635556
-## 14:        3           tree         6  euc 0.3633333
-## 15:        1            dwt       la8  dtw 0.3546667
-## 16:        5            dwt      haar  euc 0.3540000
-## 17:        5            dwt       la8  euc 0.3540000
-## 18:        5            dwt       la8  erp 0.3540000
-## 19:        5            dwt       la8 manh 0.3540000
-## 20:        3            dwt       la8  euc 0.3537778
-## 21:        3           tree        12  euc 0.3533333
-## 22:        3           tree        12 manh 0.3533333
-## 23:        1            dwt      haar manh 0.3444444
-## 24:        1            dwt       la8 manh 0.3444444
-## 25:        3            dwt       la8  dtw 0.3440000
-## 26:        3            raw      &lt;NA&gt;  euc 0.3435556
-## 27:        3            raw      &lt;NA&gt;  erp 0.3433333
-## 28:        1            dwt      haar  euc 0.3346667
-## 29:        1            dwt       la8  erp 0.3337778
-## 30:        3           tree         6  dtw 0.3337778
-## 31:        3           tree        12  dtw 0.3337778
-## 32:        1            dwt       la8  euc 0.3246667
-## 33:        5            dwt       la8  dtw 0.3240000
-## 34:        3            raw      &lt;NA&gt;  dtw 0.3240000
-## 35:        5            dwt      haar  dtw 0.3237778
-## 36:        1           tree        12  dtw 0.3235556
-## 37:        1           tree         6  dtw 0.3235556
-## 38:        1            raw      &lt;NA&gt;  euc 0.3233333
-## 39:        1           tree         6 manh 0.3231111
-## 40:        5            raw      &lt;NA&gt; manh 0.3135556
-## 41:        1           tree         6  euc 0.3133333
-## 42:        1           tree        12  euc 0.3133333
-## 43:        3            raw      &lt;NA&gt; manh 0.3133333
-## 44:        1           tree         6  erp 0.3131111
-## 45:        5           tree        12 manh 0.3131111
-## 46:        1           tree        12 manh 0.3128889
-## 47:        5            raw      &lt;NA&gt;  erp 0.3128889
-## 48:        5            raw      &lt;NA&gt;  dtw 0.3035556
-## 49:        1           tree        12  erp 0.3028889
-## 50:        1            raw      &lt;NA&gt;  dtw 0.3028889
-## 51:        5           tree         6  dtw 0.2935556
-## 52:        5           tree        12  euc 0.2928889
-## 53:        5           tree        12  dtw 0.2835556
-## 54:        1            raw      &lt;NA&gt; manh 0.2833333
-## 55:        5            raw      &lt;NA&gt;  euc 0.2828889
-## 56:        5           tree         6 manh 0.2726667
-## 57:        5           tree         6  euc 0.2726667
-## 58:        5           tree        12  erp 0.2626667
-## 59:        1            raw      &lt;NA&gt;  erp 0.2526667
-## 60:        5           tree         6  erp 0.2524444
-##     kNNValue representation parameter dist   meanACC</code></pre>
+<pre><code>##     kNNValue representation parameter dist   meanACC     sdACC
+##  1:        3            dwt      haar  erp 0.4040000 0.1211093
+##  2:        3            dwt       la8  erp 0.3944444 0.1287624
+##  3:        3           tree         6  erp 0.3835556 0.1333190
+##  4:        5            dwt      haar manh 0.3740000 0.1421253
+##  5:        3            dwt      haar  dtw 0.3737778 0.1195600
+##  6:        3           tree        12  erp 0.3733333 0.1340683
+##  7:        1            dwt      haar  dtw 0.3646667 0.1334408
+##  8:        3            dwt      haar  euc 0.3642222 0.1307052
+##  9:        3            dwt       la8 manh 0.3642222 0.1275442
+## 10:        1            dwt      haar  erp 0.3640000 0.1320719
+## 11:        3            dwt      haar manh 0.3640000 0.1335139
+## 12:        5            dwt      haar  erp 0.3640000 0.1273518
+## 13:        3           tree         6 manh 0.3635556 0.1206566
+## 14:        3           tree         6  euc 0.3633333 0.1328648
+## 15:        1            dwt       la8  dtw 0.3546667 0.1471462
+## 16:        5            dwt      haar  euc 0.3540000 0.1167937
+## 17:        5            dwt       la8  euc 0.3540000 0.1167937
+## 18:        5            dwt       la8  erp 0.3540000 0.1358049
+## 19:        5            dwt       la8 manh 0.3540000 0.1412611
+## 20:        3            dwt       la8  euc 0.3537778 0.1212050
+## 21:        3           tree        12  euc 0.3533333 0.1365264
+## 22:        3           tree        12 manh 0.3533333 0.1210519
+## 23:        1            dwt      haar manh 0.3444444 0.1410110
+## 24:        1            dwt       la8 manh 0.3444444 0.1424509
+## 25:        3            dwt       la8  dtw 0.3440000 0.1183356
+## 26:        3            raw      &lt;NA&gt;  euc 0.3435556 0.1515327
+## 27:        3            raw      &lt;NA&gt;  erp 0.3433333 0.1274841
+## 28:        1            dwt      haar  euc 0.3346667 0.1291607
+## 29:        1            dwt       la8  erp 0.3337778 0.1086104
+## 30:        3           tree         6  dtw 0.3337778 0.1270428
+## 31:        3           tree        12  dtw 0.3337778 0.1270428
+## 32:        1            dwt       la8  euc 0.3246667 0.1337915
+## 33:        5            dwt       la8  dtw 0.3240000 0.1124939
+## 34:        3            raw      &lt;NA&gt;  dtw 0.3240000 0.1351792
+## 35:        5            dwt      haar  dtw 0.3237778 0.1174176
+## 36:        1           tree        12  dtw 0.3235556 0.1439752
+## 37:        1           tree         6  dtw 0.3235556 0.1425506
+## 38:        1            raw      &lt;NA&gt;  euc 0.3233333 0.1527319
+## 39:        1           tree         6 manh 0.3231111 0.1272782
+## 40:        5            raw      &lt;NA&gt; manh 0.3135556 0.1282141
+## 41:        1           tree         6  euc 0.3133333 0.1314493
+## 42:        1           tree        12  euc 0.3133333 0.1314493
+## 43:        3            raw      &lt;NA&gt; manh 0.3133333 0.1225619
+## 44:        1           tree         6  erp 0.3131111 0.1329869
+## 45:        5           tree        12 manh 0.3131111 0.1148726
+## 46:        1           tree        12 manh 0.3128889 0.1275456
+## 47:        5            raw      &lt;NA&gt;  erp 0.3128889 0.1108241
+## 48:        5            raw      &lt;NA&gt;  dtw 0.3035556 0.1280991
+## 49:        1           tree        12  erp 0.3028889 0.1312730
+## 50:        1            raw      &lt;NA&gt;  dtw 0.3028889 0.1384835
+## 51:        5           tree         6  dtw 0.2935556 0.1099735
+## 52:        5           tree        12  euc 0.2928889 0.1482536
+## 53:        5           tree        12  dtw 0.2835556 0.1116820
+## 54:        1            raw      &lt;NA&gt; manh 0.2833333 0.1397051
+## 55:        5            raw      &lt;NA&gt;  euc 0.2828889 0.1199901
+## 56:        5           tree         6 manh 0.2726667 0.1136049
+## 57:        5           tree         6  euc 0.2726667 0.1472039
+## 58:        5           tree        12  erp 0.2626667 0.1151808
+## 59:        1            raw      &lt;NA&gt;  erp 0.2526667 0.1350011
+## 60:        5           tree         6  erp 0.2524444 0.1209070
+##     kNNValue representation parameter dist   meanACC     sdACC</code></pre>
 <p>Using 60 different parameter&amp;method combinations, the best result we obtain is the accuracy level of 0.4040000, which is too low to classify correctly. In order to get a representation with a higher accuracy, some data preprocessing steps will be applied.</p>
 <p>As a first method, the mean value will be subtracted from each instance.</p>
 <pre class="r"><code>dt4_long_2 &lt;- copy(dt4_long)
@@ -861,13 +861,13 @@ setnames(dt4_long_2, &quot;newValue&quot;, &quot;value&quot;)</code></pre>
 <pre class="r"><code>#running the algorithm again
 dt4_reprTable_2 &lt;- alternativeComparisonFunc(kVector, dt4_long_2, dt4_classes, cv_indices4, nof_rep, n_fold)
 head(dt4_reprTable_2[order(meanACC, decreasing=T)])</code></pre>
-<pre><code>##    kNNValue representation parameter dist   meanACC
-## 1:        1            dwt       la8  erp 0.3840000
-## 2:        3            dwt       la8  erp 0.3742222
-## 3:        5            dwt      haar manh 0.3740000
-## 4:        3            dwt      haar  dtw 0.3737778
-## 5:        1            dwt      haar  erp 0.3737778
-## 6:        1            dwt      haar  dtw 0.3646667</code></pre>
+<pre><code>##    kNNValue representation parameter dist   meanACC     sdACC
+## 1:        1            dwt       la8  erp 0.3840000 0.1355849
+## 2:        3            dwt       la8  erp 0.3742222 0.1353670
+## 3:        5            dwt      haar manh 0.3740000 0.1421253
+## 4:        3            dwt      haar  dtw 0.3737778 0.1195600
+## 5:        1            dwt      haar  erp 0.3737778 0.1379357
+## 6:        1            dwt      haar  dtw 0.3646667 0.1334408</code></pre>
 <p>The best result we obtain is less than 0.4040000. Let’s try another approach. Now, lagged values of the observations will be subtracted from each observation and the difference will be used to build models.</p>
 <pre class="r"><code>dt4_long_3 &lt;- copy(dt4_long)
 dt4_long_3[, newValue:=c(0, diff(value, 1))]</code></pre>
@@ -878,13 +878,13 @@ setnames(dt4_long_3, &quot;newValue&quot;, &quot;value&quot;)</code></pre>
 <pre class="r"><code>#running the algorithm again
 dt4_reprTable_3 &lt;- alternativeComparisonFunc(kVector, dt4_long_2, dt4_classes, cv_indices4, nof_rep, n_fold)
 head(dt4_reprTable_3[order(meanACC, decreasing=T)])</code></pre>
-<pre><code>##    kNNValue representation parameter dist   meanACC
-## 1:        1            dwt       la8  erp 0.3840000
-## 2:        3            dwt       la8  erp 0.3742222
-## 3:        5            dwt      haar manh 0.3740000
-## 4:        3            dwt      haar  dtw 0.3737778
-## 5:        1            dwt      haar  erp 0.3737778
-## 6:        1            dwt      haar  dtw 0.3646667</code></pre>
+<pre><code>##    kNNValue representation parameter dist   meanACC     sdACC
+## 1:        1            dwt       la8  erp 0.3840000 0.1355849
+## 2:        3            dwt       la8  erp 0.3742222 0.1353670
+## 3:        5            dwt      haar manh 0.3740000 0.1421253
+## 4:        3            dwt      haar  dtw 0.3737778 0.1195600
+## 5:        1            dwt      haar  erp 0.3737778 0.1379357
+## 6:        1            dwt      haar  dtw 0.3646667 0.1334408</code></pre>
 <p>The data manipulations cannot help us get a better accuracy value. The accuracy value of 0.4040000 is still the best we got. It was obtained by dwt representation using “haar” method, erp distance, and k value of 3.</p>
 <p>
  
@@ -928,68 +928,68 @@ cv_indices5 &lt;- generateCVRuns(dt5_classes, ntimes=nof_rep, nfold=n_fold,
 <pre class="r"><code>#running the algorithm
 dt5_reprTable &lt;- alternativeComparisonFunc(kVector, dt5_long, dt5_classes, cv_indices5, nof_rep, n_fold)
 dt5_reprTable[order(meanACC, decreasing=T)]</code></pre>
-<pre><code>##     kNNValue representation parameter dist   meanACC
-##  1:        1            dwt      haar  dtw 1.0000000
-##  2:        1            dwt       la8  dtw 1.0000000
-##  3:        3            dwt      haar  dtw 1.0000000
-##  4:        3            dwt       la8  dtw 1.0000000
-##  5:        5            dwt      haar  dtw 1.0000000
-##  6:        5            dwt       la8  dtw 1.0000000
-##  7:        5            dwt      haar  erp 1.0000000
-##  8:        5            dwt       la8  erp 1.0000000
-##  9:        1            dwt      haar  erp 0.9905455
-## 10:        1            dwt       la8  erp 0.9905455
-## 11:        3            dwt      haar  erp 0.9905455
-## 12:        3            dwt       la8  erp 0.9905455
-## 13:        3            dwt      haar  euc 0.9900000
-## 14:        3            dwt       la8  euc 0.9900000
-## 15:        3            dwt      haar manh 0.9900000
-## 16:        3            dwt       la8 manh 0.9900000
-## 17:        5            dwt      haar  euc 0.9900000
-## 18:        5            dwt       la8  euc 0.9900000
-## 19:        5            dwt      haar manh 0.9712727
-## 20:        5            dwt       la8 manh 0.9712727
-## 21:        1            dwt      haar  euc 0.9709091
-## 22:        1            dwt       la8  euc 0.9709091
-## 23:        1            dwt      haar manh 0.9709091
-## 24:        1            dwt       la8 manh 0.9709091
-## 25:        5            raw      &lt;NA&gt;  dtw 0.7441818
-## 26:        5            raw      &lt;NA&gt;  erp 0.7252727
-## 27:        5           tree        12 manh 0.6965455
-## 28:        5            raw      &lt;NA&gt;  euc 0.6874545
-## 29:        3            raw      &lt;NA&gt;  dtw 0.6778182
-## 30:        5           tree        12  erp 0.6778182
-## 31:        5            raw      &lt;NA&gt; manh 0.6776364
-## 32:        5           tree        12  euc 0.6774545
-## 33:        5           tree         6  erp 0.6685455
-## 34:        5           tree        12  dtw 0.6683636
-## 35:        5           tree         6  euc 0.6585455
-## 36:        1            raw      &lt;NA&gt;  dtw 0.6580000
-## 37:        3            raw      &lt;NA&gt;  euc 0.6498182
-## 38:        3            raw      &lt;NA&gt; manh 0.6490909
-## 39:        5           tree         6 manh 0.6403636
-## 40:        5           tree         6  dtw 0.6394545
-## 41:        3           tree        12  erp 0.6394545
-## 42:        3            raw      &lt;NA&gt;  erp 0.6390909
-## 43:        3           tree         6  erp 0.6303636
-## 44:        3           tree        12 manh 0.6301818
-## 45:        3           tree        12  dtw 0.6298182
-## 46:        3           tree         6  dtw 0.6205455
-## 47:        3           tree        12  euc 0.6116364
-## 48:        3           tree         6  euc 0.6016364
-## 49:        3           tree         6 manh 0.5829091
-## 50:        1           tree        12  erp 0.5812727
-## 51:        1           tree        12  dtw 0.5720000
-## 52:        1            raw      &lt;NA&gt;  erp 0.5718182
-## 53:        1           tree         6  erp 0.5532727
-## 54:        1           tree        12 manh 0.5530909
-## 55:        1           tree        12  euc 0.5525455
-## 56:        1           tree         6  dtw 0.5432727
-## 57:        1           tree         6  euc 0.5345455
-## 58:        1           tree         6 manh 0.5341818
-## 59:        1            raw      &lt;NA&gt;  euc 0.4960000
-## 60:        1            raw      &lt;NA&gt; manh 0.4863636
-##     kNNValue representation parameter dist   meanACC</code></pre>
+<pre><code>##     kNNValue representation parameter dist   meanACC      sdACC
+##  1:        1            dwt      haar  dtw 1.0000000 0.00000000
+##  2:        1            dwt       la8  dtw 1.0000000 0.00000000
+##  3:        3            dwt      haar  dtw 1.0000000 0.00000000
+##  4:        3            dwt       la8  dtw 1.0000000 0.00000000
+##  5:        5            dwt      haar  dtw 1.0000000 0.00000000
+##  6:        5            dwt       la8  dtw 1.0000000 0.00000000
+##  7:        5            dwt      haar  erp 1.0000000 0.00000000
+##  8:        5            dwt       la8  erp 1.0000000 0.00000000
+##  9:        1            dwt      haar  erp 0.9905455 0.02868690
+## 10:        1            dwt       la8  erp 0.9905455 0.02868690
+## 11:        3            dwt      haar  erp 0.9905455 0.02868690
+## 12:        3            dwt       la8  erp 0.9905455 0.02868690
+## 13:        3            dwt      haar  euc 0.9900000 0.03030458
+## 14:        3            dwt       la8  euc 0.9900000 0.03030458
+## 15:        3            dwt      haar manh 0.9900000 0.03030458
+## 16:        3            dwt       la8 manh 0.9900000 0.03030458
+## 17:        5            dwt      haar  euc 0.9900000 0.03030458
+## 18:        5            dwt       la8  euc 0.9900000 0.03030458
+## 19:        5            dwt      haar manh 0.9712727 0.04877864
+## 20:        5            dwt       la8 manh 0.9712727 0.04877864
+## 21:        1            dwt      haar  euc 0.9709091 0.04495083
+## 22:        1            dwt       la8  euc 0.9709091 0.04495083
+## 23:        1            dwt      haar manh 0.9709091 0.04495083
+## 24:        1            dwt       la8 manh 0.9709091 0.04495083
+## 25:        5            raw      &lt;NA&gt;  dtw 0.7441818 0.14090771
+## 26:        5            raw      &lt;NA&gt;  erp 0.7252727 0.13520585
+## 27:        5           tree        12 manh 0.6965455 0.12301231
+## 28:        5            raw      &lt;NA&gt;  euc 0.6874545 0.13297446
+## 29:        3            raw      &lt;NA&gt;  dtw 0.6778182 0.14398797
+## 30:        5           tree        12  erp 0.6778182 0.13845837
+## 31:        5            raw      &lt;NA&gt; manh 0.6776364 0.12371396
+## 32:        5           tree        12  euc 0.6774545 0.12529930
+## 33:        5           tree         6  erp 0.6685455 0.13929696
+## 34:        5           tree        12  dtw 0.6683636 0.13224121
+## 35:        5           tree         6  euc 0.6585455 0.12901223
+## 36:        1            raw      &lt;NA&gt;  dtw 0.6580000 0.11608515
+## 37:        3            raw      &lt;NA&gt;  euc 0.6498182 0.13478042
+## 38:        3            raw      &lt;NA&gt; manh 0.6490909 0.12518834
+## 39:        5           tree         6 manh 0.6403636 0.14175680
+## 40:        5           tree         6  dtw 0.6394545 0.12485931
+## 41:        3           tree        12  erp 0.6394545 0.12457531
+## 42:        3            raw      &lt;NA&gt;  erp 0.6390909 0.11737630
+## 43:        3           tree         6  erp 0.6303636 0.13150414
+## 44:        3           tree        12 manh 0.6301818 0.12530200
+## 45:        3           tree        12  dtw 0.6298182 0.14472265
+## 46:        3           tree         6  dtw 0.6205455 0.13114710
+## 47:        3           tree        12  euc 0.6116364 0.13001343
+## 48:        3           tree         6  euc 0.6016364 0.13609361
+## 49:        3           tree         6 manh 0.5829091 0.14670888
+## 50:        1           tree        12  erp 0.5812727 0.11015881
+## 51:        1           tree        12  dtw 0.5720000 0.13857624
+## 52:        1            raw      &lt;NA&gt;  erp 0.5718182 0.14367241
+## 53:        1           tree         6  erp 0.5532727 0.13055676
+## 54:        1           tree        12 manh 0.5530909 0.14161634
+## 55:        1           tree        12  euc 0.5525455 0.13347326
+## 56:        1           tree         6  dtw 0.5432727 0.12022018
+## 57:        1           tree         6  euc 0.5345455 0.14902845
+## 58:        1           tree         6 manh 0.5341818 0.13669792
+## 59:        1            raw      &lt;NA&gt;  euc 0.4960000 0.17325045
+## 60:        1            raw      &lt;NA&gt; manh 0.4863636 0.16052757
+##     kNNValue representation parameter dist   meanACC      sdACC</code></pre>
 <p>There are 8 different combinations of dwt and distance measurements that have the accuracy value of 1. Any of them can be used to represent the dataset. Again, the best results were obtained by discrete wavelet transform representation.</p>
 <p>
  
