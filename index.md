@@ -20,5 +20,5 @@
 
 [Here](files/projectDesc1.pdf) is the phase 1 description of the EPİAŞ project.  
 [Here](files/projectDesc2.pdf) is the phase 2 description of the EPİAŞ project.  
-[Here](files/project.pdf) is the report of the EPİAŞ project.  
+[Here](files/project.html) is the report of the EPİAŞ project.  
 [Here](files/project.ipynb) is the .ipynb notebook file.  
