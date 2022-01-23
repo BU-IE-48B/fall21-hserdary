@@ -16,3 +16,9 @@
 [Here](files/hw3.html) is comparison of alternative representation techniques and distance measures for classification of 5 different datasets from timeseriesclassification webpage.  
 [Here](files/hw3.ipynb) is the .ipynb notebook file.  
 
+## Project
+
+[Here](files/projectDesc1.pdf) is the phase 1 description of the EPİAŞ project.  
+[Here](files/projectDesc2.pdf) is the phase 2 description of the EPİAŞ project.  
+[Here](files/project.pdf) is the report of the EPİAŞ project.  
+[Here](files/project.ipynb) is the .ipynb notebook file.  
